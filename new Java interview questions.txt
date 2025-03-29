@@ -1,0 +1,592 @@
+    How many components are there in spring boot
+	2. What is BiPredicate
+	3. Disadvantage of microservices
+	4. HashSet internal working
+	5. Intern() method in String
+	6. Return type of findFirst method
+	7. Intermediate and terminal method in java
+	8. create table Student(rollNum number(5) primary key , studentName varchar2(10) not null);
+	9. Merge below array in a array
+
+	int arr1[]={2, 5, 6}  
+	int arr2[]={4, 7, 9}
+	
+	Join() method in multithreading
+	Incommunication thread in java
+	
+	Opps concept 
+	Polymorphisn
+	Encapsulation
+	Inheritance
+	Dependency injection in spring
+	Façade design pattern
+	Microservices design pattern
+	Wait() and notifyAll()
+	Can we write Throwable in the catch block
+	
+	Find the duplicate character in a string.
+	Diff between @PathVariable and @RequestParam annotation
+	Façade design pattern
+	
+	CAPGIMINI
+	
+	What is collection
+	Diff between map and HashMap
+	Does java support multiple inheritance
+	Enhanced feature in java 8
+	What is functional interface in java
+	Diff between functional interface and marker interface
+	Feature in spring boot
+	What is the embedded server in spring boot
+	What is the actuator in spring boot
+	What does @EnableConfiguration do
+	What is concurrentHashMap
+	If you have a requirnment to design to design online records . Here you have many historical records . What question you will ask and how you will design.
+	
+	Can you write the sytntax of lambda expression
+	Find the details of employee who gets  Second largest salary 
+	How to create Stream object in java 8
+	What is serialization and Deserialization
+	
+	
+	Netcracker
+	Diff between overloading and overriding
+	Diff between == and equals method
+	Diff between error and exception
+	
+	Epam
+	Solid principal
+	ACID properties 
+	
+	Diff between @primary and @qualifier
+	
+	What is abstraction
+	Singleton design pattern
+	Diff between map and flatMap    
+	
+	executorService    //
+	Multithreading     //
+	How to deploy the service in pcf
+	How to take the db credentials from pcf in our application
+	Saga design pattern   //
+	Diff between stream and parallel stream   //
+	@springBootApplication ke all 3 annotation   //
+	Rest api is giving response very slow how you will analyze and solve
+	
+	Internal of hashSet and HashMap  //
+	Diff between sleep and wait  //
+	What is transient keyword   //
+	Solid principle   //
+	Diff between synchronizedHashMap and concurrentHashMap   //
+	Failsafe and failfast    //
+	
+	
+	JVM architecture
+spring bean life cycle
+	Garbage collector   //
+	ACID properties
+Saga design pattern  //
+	What is externalization   //
+	Diff between stringBuffer and StringBuilder
+	How stream works and benefits of stream
+	
+	                      Logical
+                        -----------						
+	
+	1. Given a list of integers, separate odd and even numbers
+          
+		   Map<String, List<Integer>> result = list.stream().collect(Collectors.groupingBy(num -> (num % 2 == 0) ? "Even" : "Odd"));
+        System.out.println(result.get("Even"));
+        System.out.println(result.get("Odd"));
+		
+2) How do you remove duplicate elements from a list using Java 8 streams?
+      List<String> list =	Arrays.asList("Java", "Python", "C#", "Java", "Kotlin", "Python");
+        //list.stream().distinct().forEach(System.out::println);
+        List<String> list1 = list.stream().collect(Collectors.toCollection(LinkedHashSet::new)).stream().collect(Collectors.toList());
+        list1.stream().forEach(System.out::println);
+
+3) How do you find frequency of each character in a string using Java 8 streams?
+
+
+     String inputString = "Java Concept Of The Day";
+		
+	Map<Character, Long> map = 	inputString.chars().mapToObj(e -> (char)e).collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+	System.out.println(map);
+
+4) How do you find frequency of each element in an array or a list?
+
+
+      List<String> list =	Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil");
+	
+	String[] arrays = {"Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil"};
+	
+     List<String> list =	Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil");
+
+        String[] arrays = {"Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil"};
+
+        /*list.stream().collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+                .entrySet().stream().filter(entry->entry.getValue()>0)
+                .map(entry->entry.getKey()+"-"+entry.getValue()).forEach(System.out::println);*/
+				
+       /* Arrays.stream(arrays).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+                .entrySet().stream().filter(entry->entry.getValue()>0).map(entry->entry.getKey()+"-"+entry.getValue())
+                .forEach(System.out::println);*/
+
+5) How do you sort the given list of decimals in reverse order?
+
+
+        //How do you sort the given list of decimals in reverse order?
+        List<Double> decimalList = Arrays.asList(12.45, 23.58, 17.13, 42.89, 33.78, 71.85, 56.98, 21.12);
+        //decimalList.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println); //reverse order
+        decimalList.stream().sorted().forEach(System.out::println);
+
+6) Given a list of strings, join the strings with ‘[‘ as prefix, ‘]’ as suffix and ‘,’ as delimiter?
+
+
+            List<String> listOfStrings = Arrays.asList("Facebook", "Twitter", "YouTube", "WhatsApp", "LinkedIn");
+		String string = listOfStrings.stream().collect(Collectors.joining(", ", "[" , "]"));
+		System.out.println(string);
+
+7) From the given list of integers, print the numbers which are multiples of 5?
+
+
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		listOfIntegers.stream().filter(e -> e%5 == 0 ).forEach(e -> System.out.println(e));
+
+8) Given a list of integers, find maximum and minimum of those numbers?
+
+
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		Optional<Integer> max = listOfIntegers.stream().max(Comparator.naturalOrder());
+		System.out.println(max.get());
+		
+		Optional<Integer> min = listOfIntegers.stream().min(Comparator.naturalOrder());
+		System.out.println(min.get());
+
+        IntSummaryStatistics states = listOfInteger.stream().collect(Collectors.summarizingInt(Integer::intValue));
+        System.out.println("Max -"+states.getMax());
+        System.out.println("Min -"+states.getMin());
+		
+9) How do you merge two unsorted arrays into single sorted array using Java 8 streams?
+
+
+         int[] a = new int[] {4, 2, 7, 1};
+        
+        int[] b = new int[] {8, 3, 9, 5};
+        
+       int[] toArray = IntStream.concat(Arrays.stream(a), Arrays.stream(b))
+                .sorted()
+                .toArray();
+        System.out.println( Arrays.toString(toArray));
+
+10) How do you merge two unsorted arrays into single sorted array without duplicates?
+         int[] a = new int[] {4, 2, 5, 1};
+        int[] b = new int[] {8, 1, 9, 5};
+       int[] c =  IntStream.concat(Arrays.stream(a), Arrays.stream(b)).distinct().sorted().toArray();
+       System.out.println(Arrays.toString(c));
+
+11) How do you get three maximum numbers and three minimum numbers from the given list of integers?
+
+
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        List<Integer> min3 = listOfIntegers.stream().sorted(Comparator.naturalOrder()).limit(3).collect(Collectors.toList());
+        List<Integer> max3 = listOfIntegers.stream().sorted(Comparator.reverseOrder()).limit(3).collect(Collectors.toList());
+        System.out.println(min3);
+        System.out.println(max3);
+		
+12) Java 8 program to check if two strings are anagrams or not?
+
+
+	    String s1 = "RaceCar";
+        String s2 = "CarRace";
+        
+       String s3 =  s1.chars().mapToObj(c -> (char)c).sorted().map(c -> String.valueOf(c)).collect(Collectors.joining());
+       String s4 =  s2.chars().mapToObj(c -> (char)c).sorted().map(c -> String.valueOf(c)).collect(Collectors.joining());
+       
+       if(s3.equals(s4))
+    	   System.out.println("String is anagram");
+       else
+    	   System.out.println("String is not anagram");
+
+
+
+13) Find sum of all digits of a number in Java 8?
+
+
+            int i = 15623;
+		Integer sum = Arrays.stream(String.valueOf(i).split("")).collect(Collectors.summingInt(e -> Integer.parseInt(e)));
+		System.out.println(sum);
+		
+		Integer f = Arrays.stream(String.valueOf(i).split("")).map(t -> Integer.parseInt(t)).collect(Collectors.summingInt(r -> r.intValue()));
+		System.out.println(f);
+
+14) Find second largest number in an integer array?
+
+
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		Integer integer = listOfIntegers.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+		System.out.println(integer);
+
+15) Given a list of strings, sort them according to increasing order of their length?
+
+
+       List<String> listOfStrings = Arrays.asList("Java", "Python", "C#", "Ram", "Aam","HTML", "Kotlin", "C++", "COBOL", "C");
+		
+	List<String> sortedList =	listOfStrings.stream().sorted(Comparator.comparing(e-> e.length())).collect(Collectors.toList());
+	   System.out.println(sortedList);
+
+16) Given an integer array, find sum and average of all elements?
+
+
+          int[] a = new int[] {45, 12, 56, 15, 24, 75, 31, 89};
+	    int sum = Arrays.stream(a).sum();
+	    System.out.println("Sum of the element is : "+sum);
+	    
+	    double average =  Arrays.stream(a).average().getAsDouble();
+	    System.out.println(average);
+
+
+17) How do you find common elements between two arrays?
+
+
+         List<Integer> list1 = Arrays.asList(71, 21, 34, 89, 56, 28);
+        
+        List<Integer> list2 = Arrays.asList(12, 56, 17, 21, 94, 34);
+        
+        List<Integer> commonElementList =   list1.stream().filter(e -> list2.contains(e)).collect(Collectors.toList());
+		System.out.println(commonElementList);
+
+
+18) Reverse each word of a string using Java 8 streams?
+
+           String str = "Java Concept Of The Day";
+	     String reversedWord = Arrays.stream(str.split(" ")).map(word -> new StringBuffer(word).reverse()).collect(Collectors.joining(" "));
+	    System.out.println(reversedWord);
+
+
+19) How do you find sum of first 10 natural numbers?
+
+            int sum = IntStream.range(1, 11).sum();
+		System.out.println(sum);
+
+
+20) Reverse an integer array
+
+            int[] array = new int[] {5, 1, 7, 3, 9, 6};
+		int[] reveresedArray =  IntStream.range(0, array.length).map(i -> array[array.length - 1 -i]).toArray();
+		 System.out.println(Arrays.toString(reveresedArray));
+
+
+21) Print first 10 even numbers
+IntStream.range(1, 11).map(i -> i*2).forEach(System.out::println);
+
+22) How do you find the most repeated element in an array?
+
+
+List<String> listOfStrings = Arrays.asList("Saurabh","Pen", "Saurabh","Saurabh","Saurabh","Eraser", "Note Book", "Pen", "Pencil", "Pen", "Note Book", "Pencil"); 
+	Map<String,Long> map =	listOfStrings.stream().collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+Entry<String,Long> entry =	map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+System.out.println(entry.getKey());
+System.out.println(entry.getValue());
+
+
+23) Palindrome program using Java 8 streams
+
+            String str = "ROTATOR";
+		boolean flag =IntStream.range(0, str.length()/2).noneMatch(i -> str.charAt(i) != str.charAt(str.length() -1 -i));
+		if(flag)
+			System.out.println("String is palindrome ");
+		else
+			System.out.println("String is not palindrome");
+
+
+24) Given a list of strings, find out those strings which start with a number?
+
+             List<String> listOfStrings = Arrays.asList("One", "2wo", "3hree", "Four", "5ive", "Six");
+		listOfStrings.stream().filter(str -> Character.isDigit(str.charAt(0))).forEach(System.out::println);
+
+
+25) How do you extract duplicate elements from an array?
+
+            List<Integer> listOfIntegers = Arrays.asList(111, 222, 333, 111, 555, 333, 777, 222);
+		Set<Integer> uniqueElement = new HashSet<>();
+		
+	     Set<Integer> duplicate =	listOfIntegers.stream().filter(e -> !uniqueElement.add(e)).collect(Collectors.toSet());
+	     System.out.println(duplicate);
+
+
+26) Print duplicate characters in a string?
+
+
+            String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		Map<Character, Long> map = inputString.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		Set<Character> set = map.entrySet().stream().filter(e -> e.getValue() > 1).map(e -> e.getKey())
+				.collect(Collectors.toSet());
+
+		System.out.println(set);
+
+
+27) Find first repeated character in a string?
+
+
+           String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		
+		Map<Character,Long> map =  inputString.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new ,Collectors.counting()));
+		char ch = map.entrySet().stream().filter(e -> e.getValue()>1).map(e -> e.getKey()).findFirst().get();
+		System.out.println(ch);
+
+
+28) Find first non-repeated character in a string?
+
+            String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		Map<Character, Long> map = inputString.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+		char c = map.entrySet().stream().filter(e -> e.getValue() == 1).map(e -> e.getKey()).findFirst().get();
+		System.out.println(c);
+
+
+29) Fibonacci series
+Stream.iterate(new int[] {0, 1}, f -> new int[] {f[1] , f[0] + f[1]}).limit(10).map(f -> f[0]).forEach(System.out::println);
+
+30) First 10 odd numbers
+
+ Stream.iterate(new int[] {1, 3}, f -> new int[] {f[1], f[1]+2})
+                .limit(10)
+                .map(f -> f[0])
+                .forEach(i -> System.out.print(i+" "));
+
+
+31) How do you get last element of an array?
+
+           List<String> listOfStrings = Arrays.asList("One", "Two", "Three", "Four", "Five", "Six");
+		System.out.println(listOfStrings.get(listOfStrings.size() -1));
+		
+		String last = listOfStrings.stream().skip(listOfStrings.size() -1).findFirst().get();
+		System.out.println(last);
+
+
+
+
+
+
+32) Find the age of a person in years if the birthday has given?
+	1. Given a list of integers, separate odd and even numbers?
+           List<Integer> list = Arrays.asList(10,45,66,78,33,12,11,45,79,50);
+		Map<Boolean, List<Integer>> collect = list.stream().collect(Collectors.partitioningBy(e -> e %2 == 0));
+		System.out.println("Even number : ");
+		collect.entrySet().stream().filter(entry -> entry.getKey()).forEach(e -> System.out.println(e.getValue()))
+		System.out.println(" Odd numebr : ");
+		collect.entrySet().stream().filter( e -> !e.getKey()).forEach( e -> System.out.println(e.getValue()));
+		
+2) How do you remove duplicate elements from a list using Java 8 streams?
+      List<String> list =	Arrays.asList("Java", "Python", "C#", "Java", "Kotlin", "Python");
+	list.stream().distinct().forEach(e -> System.out.println(e));
+	List<String> uniqueList = list.stream().distinct().collect(Collectors.toList());
+	System.out.println(uniqueList);
+
+3) How do you find frequency of each character in a string using Java 8 streams?
+     String inputString = "Java Concept Of The Day";
+	Map<Character, Long> map = 	inputString.chars().mapToObj(e -> (char)e).collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+	System.out.println(map);
+	
+4) How do you find frequency of each element in an array or a list?
+      List<String> list =	Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil");
+	String[] arrays = {"Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil"};
+     Map<String , Long> map = 	list.stream().collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+     System.out.println(map);
+     Map<String , Long> map2 =   Arrays.stream(arrays).collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+	  System.out.println(map2);
+	  
+5) How do you sort the given list of decimals in reverse order?
+            List<Double> decimalList = Arrays.asList(12.45, 23.58, 17.13, 42.89, 33.78, 71.85, 56.98, 21.12);
+		List<Double> reverseOrder =  decimalList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		System.out.println(reverseOrder);
+		
+6) Given a list of strings, join the strings with ‘[‘ as prefix, ‘]’ as suffix and ‘,’ as delimiter?
+            List<String> listOfStrings = Arrays.asList("Facebook", "Twitter", "YouTube", "WhatsApp", "LinkedIn");
+		String string = listOfStrings.stream().collect(Collectors.joining(", ", "[" , "]"));
+		System.out.println(string);
+		
+7) From the given list of integers, print the numbers which are multiples of 5?
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+			
+		listOfIntegers.stream().filter(e -> e%5 == 0 ).forEach(e -> System.out.println(e));
+8) Given a list of integers, find maximum and minimum of those numbers?
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		Optional<Integer> max = listOfIntegers.stream().max(Comparator.naturalOrder());
+		System.out.println(max.get());
+		Optional<Integer> min = listOfIntegers.stream().min(Comparator.naturalOrder());
+		System.out.println(min.get());
+		
+9) How do you merge two unsorted arrays into single sorted array using Java 8 streams?
+         int[] a = new int[] {4, 2, 7, 1};
+        int[] b = new int[] {8, 3, 9, 5};
+        int[] c =   IntStream.concat(Arrays.stream(a), Arrays.stream(b)).sorted().toArray();
+	   System.out.println(Arrays.toString(c));
+	   
+10) How do you merge two unsorted arrays into single sorted array without duplicates?
+         int[] a = new int[] {4, 2, 5, 1};
+        int[] b = new int[] {8, 1, 9, 5};
+       int[] c =  IntStream.concat(Arrays.stream(a), Arrays.stream(b)).distinct().sorted().toArray();
+       System.out.println(Arrays.toString(c));
+	   
+	  
+11) How do you get three maximum numbers and three minimum numbers from the given list of integers?
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		listOfIntegers.stream().sorted(Comparator.reverseOrder()).limit(3).forEach(e -> System.out.println(e));
+		listOfIntegers.stream().sorted().limit(3).forEach(e -> System.out.println(e));
+12) Java 8 program to check if two strings are anagrams or not?
+	String s1 = "RaceCar";
+        String s2 = "CarRace";
+       String s3 =  s1.chars().mapToObj(c -> (char)c).sorted().map(c -> String.valueOf(c)).collect(Collectors.joining());
+       String s4 =  s2.chars().mapToObj(c -> (char)c).sorted().map(c -> String.valueOf(c)).collect(Collectors.joining());
+       if(s3.equals(s4))
+    	   System.out.println("String is anagram");
+       else
+    	   System.out.println("String is not anagram");
+		   
+13) Find sum of all digits of a number in Java 8?
+            int i = 15623;
+			int sum = String.valueOf(i).chars().map(Character::getNumericValue).sum();
+        System.out.println(sum);
+		
+		Integer sum = Arrays.stream(String.valueOf(i).split("")).collect(Collectors.summingInt(e -> Integer.parseInt(e)));
+		System.out.println(sum);
+		Integer f = Arrays.stream(String.valueOf(i).split("")).map(t -> Integer.parseInt(t)).collect(Collectors.summingInt(r -> r.intValue()));
+		System.out.println(f)
+		
+14) Find second largest number in an integer array?
+            List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+		Integer integer = listOfIntegers.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+		System.out.println(integer);
+		
+15) Given a list of strings, sort them according to increasing order of their length?
+       List<String> listOfStrings = Arrays.asList("Java", "Python", "C#", "Ram", "Aam","HTML", "Kotlin", "C++", "COBOL", "C");
+	List<String> sortedList =	listOfStrings.stream().sorted(Comparator.comparing(e-> e.length())).collect(Collectors.toList());
+	   System.out.println(sortedList);
+	   
+16) Given an integer array, find sum and average of all elements?
+          int[] a = new int[] {45, 12, 56, 15, 24, 75, 31, 89};
+	    IntSummaryStatistics intSummaryStatistics = Arrays.stream(listInt).summaryStatistics();
+        System.out.println("Sum :"+intSummaryStatistics.getSum());
+        System.out.println("Average :"+intSummaryStatistics.getAverage());
+		
+17) How do you find common elements between two arrays?
+         List<Integer> list1 = Arrays.asList(71, 21, 34, 89, 56, 28);
+        List<Integer> list2 = Arrays.asList(12, 56, 17, 21, 94, 34);
+        List<Integer> commonElementList =   list1.stream().filter(e -> list2.contains(e)).collect(Collectors.toList());
+		System.out.println(commonElementList);
+		
+18) Reverse each word of a string using Java 8 streams?
+           String str = "Java Concept Of The Day";
+	     String reversedWord = Arrays.stream(str.split(" ")).map(word -> new StringBuffer(word).reverse()).collect(Collectors.joining(" "));
+	    System.out.println(reversedWord);
+		
+19) How do you find sum of first 10 natural numbers?
+
+            int sum = IntStream.range(1, 11).sum();
+		    System.out.println(sum);
+			
+20) Reverse an integer array
+
+            int[] array = new int[] {5, 1, 7, 3, 9, 6};
+		int[] reveresedArray =  IntStream.range(0, array.length).map(i -> array[array.length - 1 -i]).toArray();
+		 System.out.println(Arrays.toString(reveresedArray));
+		 
+21) Print first 10 even numbers
+IntStream.range(1, 11).map(i -> i*2).forEach(System.out::println);
+
+22) How do you find the most repeated element in an array?
+    List<String> listOfStrings = Arrays.asList("Saurabh","Pen", "Saurabh","Saurabh","Saurabh","Eraser", "Note Book", "Pen", "Pencil", "Pen", "Note Book", "Pencil"); 
+	Map<String,Long> map =	listOfStrings.stream().collect(Collectors.groupingBy(Function.identity() , Collectors.counting()));
+    Entry<String,Long> entry =	map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+    System.out.println(entry.getKey());
+    System.out.println(entry.getValue());
+
+23) Palindrome program using Java 8 streams
+
+        String str = "ROTATOR";
+		boolean flag =IntStream.range(0, str.length()/2).noneMatch(i -> str.charAt(i) != str.charAt(str.length() -1 -i));
+		if(flag)
+			System.out.println("String is palindrome ");
+		else
+			System.out.println("String is not palindrome");
+			
+24) Given a list of strings, find out those strings which start with a number?
+             List<String> listOfStrings = Arrays.asList("One", "2wo", "3hree", "Four", "5ive", "Six");
+		     listOfStrings.stream().filter(str -> Character.isDigit(str.charAt(0))).forEach(System.out::println);
+			 
+25) How do you extract duplicate elements from an array?
+            List<Integer> listOfIntegers = Arrays.asList(111, 222, 333, 111, 555, 333, 777, 222);
+		    Set<Integer> uniqueElement = new HashSet<>();
+	        Set<Integer> duplicate =	listOfIntegers.stream().filter(e -> !uniqueElement.add(e)).collect(Collectors.toSet());
+	        System.out.println(duplicate);
+			
+26) Print duplicate characters in a string?
+            String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		    Map<Character, Long> map = inputString.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		    Set<Character> set = map.entrySet().stream().filter(e -> e.getValue() > 1).map(e -> e.getKey())
+				.collect(Collectors.toSet());
+		   System.out.println(set);
+		   
+27) Find first repeated character in a string?
+        String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		Map<Character,Long> map =  inputString.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new ,Collectors.counting()));
+		char ch = map.entrySet().stream().filter(e -> e.getValue()>1).map(e -> e.getKey()).findFirst().get();
+		System.out.println(ch);
+		
+28) Find first non-repeated character in a string?
+        String inputString = "Java Concept Of The Day".replaceAll("\\s+", "").toLowerCase();
+		Map<Character, Long> map = inputString.chars().mapToObj(c -> (char) c)
+				.collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+		char c = map.entrySet().stream().filter(e -> e.getValue() == 1).map(e -> e.getKey()).findFirst().get();
+		System.out.println(c);
+		
+29) Fibonacci series
+Stream.iterate(new int[] {0, 1}, f -> new int[] {f[1] , f[0] + f[1]}).limit(10).map(f -> f[0]).forEach(System.out::println);
+
+30) First 10 odd numbers
+ Stream.iterate(new int[] {1, 3}, f -> new int[] {f[1], f[1]+2})
+                .limit(10)
+                .map(f -> f[0])
+                .forEach(i -> System.out.print(i+" "));
+				
+31) How do you get last element of an array?
+        List<String> listOfStrings = Arrays.asList("One", "Two", "Three", "Four", "Five", "Six");
+		System.out.println(listOfStrings.get(listOfStrings.size() -1));
+		String last = listOfStrings.stream().skip(listOfStrings.size() -1).findFirst().get();
+		System.out.println(last);
+		
+		
+Diff between @PutMapping and @PatchMapping
+Diff between map and flatMap
+Difference between save() and persist() method?
+What is second level cache?
+
+HCL INTERVIEW
+-------------
+Default Fetching Strategies in Hibernate
+Hibernate relationship
+NamedQuery in hibernate
+How to call procedure in Hibernate
+Methods of Session interface
+Difference Between openSession() and getCurrentSession()
+Key Differences Between get() and load()
+Diff between merge() method and update() method
+Diff between @Primary and @Qualifier annotation
+How many components are there in spring boot
+Spring boot actuator
+Diff between sleep and wait method
+Executor Service
+How to create Immutable class in java
+Difference between Comparable and Comparator
+What is intern method in java
+Internal of working of HashMap  and HashSet
+Solid principle?
+Fail Safe and fail fast?
+Diff between synchronizedHashMap and concurrentHashMap?
+What is transient keyword?
+what is externalization?
+what is Garbage collection?
